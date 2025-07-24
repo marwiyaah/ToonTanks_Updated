@@ -1,0 +1,11 @@
+# Ignore everything
+*
+
+# But not these
+!Source/
+!Source/**/
+!Source/**/*.h
+!Source/**/*.cpp
+
+# Allow .gitignore itself
+!.gitignore
