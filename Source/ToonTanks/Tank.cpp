@@ -4,6 +4,7 @@
 #include "Tank.h"			// class header file at the top
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"		// components header file underneath the class h files
+#include "Components/InputComponent.h"
 
 ATank::ATank()
 {
@@ -14,3 +15,15 @@ ATank::ATank()
 	Camera -> SetupAttachment(SpringArm);
 }
 
+void ATank::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
+{
+	// overriding parent function
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ATank::Move);
+}
+
+
+void ATank::Move(float Value)
+{
+	UE_LOG(LogTemp, Warning, TEXT("value %f"), Value);
+}
