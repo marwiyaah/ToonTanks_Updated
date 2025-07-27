@@ -5,6 +5,7 @@
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"		// components header file underneath the class h files
 #include "Components/InputComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 ATank::ATank()
 {
@@ -26,7 +27,8 @@ void ATank::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponen
 void ATank::Move(float Value)
 {
 	FVector DeltaLocation = FVector::ZeroVector;
-	DeltaLocation.X = Value;
-	AddActorLocalOffset(DeltaLocation);
+	// X = Value * DeltaTime * Speed
+	DeltaLocation.X = Value * Speed * UGameplayStatics::GetWorldDeltaSeconds(this);
+	AddActorLocalOffset(DeltaLocation, true);
 	
 }
