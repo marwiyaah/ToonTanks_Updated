@@ -19,7 +19,12 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
-
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+	
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
 
 private:
 	UPROPERTY(VisibleAnywhere, Category= "Components")
@@ -36,4 +41,6 @@ private:
 	  
 	void Move(float Value);
 	void Turn(float Value);
+
+	APlayerController* PlayerControllerRef;
 };
