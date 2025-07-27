@@ -18,6 +18,8 @@ public:
 protected:
 	void RotateTurret(FVector LookAtTarget);
 
+	void Fire();
+
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category= "Components", meta=(AllowPrivateAccess = "true"))				// a macro that helps the code to perform as unreal engine's reflection system
 	class UCapsuleComponent* CapsuleComp;
