@@ -16,7 +16,7 @@ ATank::ATank()
 	Camera -> SetupAttachment(SpringArm);
 }
 
-void ATank::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
+void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	// overriding parent function
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
@@ -26,9 +26,13 @@ void ATank::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponen
 
 void ATank::Move(float Value)
 {
+	if (Value != 0.f)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Turn Input: %f"), Value);
+	}
 	FVector DeltaLocation = FVector::ZeroVector;
-	// X = Value * DeltaTime * Speed
 	DeltaLocation.X = Value * Speed * UGameplayStatics::GetWorldDeltaSeconds(this);
 	AddActorLocalOffset(DeltaLocation, true);
+	// AddActorLocalOffset(DeltaLocation, true);	// setting sweeping to true is problematic
 	
 }

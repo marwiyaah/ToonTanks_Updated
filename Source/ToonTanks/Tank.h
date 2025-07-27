@@ -18,7 +18,9 @@ public:
 	ATank();
 
 	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
+
+
 private:
 	UPROPERTY(VisibleAnywhere, Category= "Components")
 	class USpringArmComponent* SpringArm;
@@ -28,6 +30,10 @@ private:
 
 	UPROPERTY(EditAnywhere, Category="Movement")
 	float Speed = 200.f;
-	
+
+	//UPROPERTY(EditAnywhere, Category="Movement")
+	//float TurnRate = 45.f;
+	  
 	void Move(float Value);
+	//void Turn(float Values);
 };
