@@ -21,6 +21,7 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	// overriding parent function
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 	PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ATank::Move);
+	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &ATank::Turn);
 }
 
 
@@ -35,4 +36,12 @@ void ATank::Move(float Value)
 	AddActorLocalOffset(DeltaLocation, true);
 	// AddActorLocalOffset(DeltaLocation, true);	// setting sweeping to true is problematic
 	
+}
+
+void ATank::Turn(float Value)
+{
+	FRotator DeltaRotation = FRotator::ZeroRotator;
+	// Yaw = Value * TurnRate * DeltaTime
+	DeltaRotation.Yaw = Value * TurnRate * UGameplayStatics::GetWorldDeltaSeconds(this);
+	AddActorLocalRotation(DeltaRotation, true);
 }
