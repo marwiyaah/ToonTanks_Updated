@@ -36,6 +36,14 @@ void ATank::Tick(float DeltaTime)
 			ECollisionChannel::ECC_Visibility, false,
 			HitResult);
 		
+		DrawDebugSphere(
+		GetWorld(),
+		HitResult.ImpactPoint,
+		25.f,
+		12,
+		FColor::Red,
+		false,
+		-1.f);
 	}
 }
 
@@ -45,15 +53,6 @@ void ATank::BeginPlay()
 	Super::BeginPlay();
 
 	PlayerControllerRef = Cast< APlayerController>(GetController());
-
-	DrawDebugSphere(
-		GetWorld(),
-		GetActorLocation() + FVector(0.f, 0.f, 200.f),
-		100.f,
-		12,
-		FColor::Red,
-		true,
-		30.f);
 }
 
 void ATank::Move(float Value)
