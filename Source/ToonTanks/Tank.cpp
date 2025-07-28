@@ -2,6 +2,8 @@
 
 
 #include "Tank.h"			// class header file at the top
+
+#include "Tower.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"		// components header file underneath the class h files
 #include "Components/InputComponent.h"
@@ -70,3 +72,4 @@ void ATank::Turn(float Value)
 	DeltaRotation.Yaw = Value * TurnRate * UGameplayStatics::GetWorldDeltaSeconds(this);
 	AddActorLocalRotation(DeltaRotation, true);
 }
+
